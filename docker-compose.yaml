@@ -1,0 +1,16 @@
+services:
+  # 서비스 이름
+  postgres:
+    image: postgres:15
+    restart: always
+    # postgres:15 이미지와 아래 경로의 싱크를 맞추는 것(이미지가 꺼지더라도 아래 경로 안에 데이터 유지되어 있음)
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data 
+    # port 5432와 image 15 버전 5432 포트와 연동
+    ports:
+      - "5432:5432"
+    # postgres 띄웠을 때 로그인 정보
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
